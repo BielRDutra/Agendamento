@@ -1,8 +1,9 @@
-package com.agendamento.Services.DTO.Out;
+package com.agendamento.Controllers.DTO.In;
+
 
 import com.agendamento.Entities.StatusNotificacaoEnum;
 
-public record AgendamentoRecordOut(Long id,
+public record AgendamentoRecord(Long id,
                                 StatusNotificacaoEnum statusNotificacao,
                                 String emailDestinatario,
                                 String telefoneDestinatario,
@@ -11,8 +12,6 @@ public record AgendamentoRecordOut(Long id,
                                 String dataHoraEnvio,
                                 String dataHoraModificacao) {
 
-    public AgendamentoRecordOut {
+    public AgendamentoRecord {
         // Aqui você pode adicionar validações, se necessário
-    }
-    
-}
+    }}
