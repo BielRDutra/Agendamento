@@ -9,6 +9,7 @@ import com.agendamento.Controllers.DTO.Out.AgendamentoRecordOut;
 import com.agendamento.Services.AgendamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,5 +32,11 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentoService.buscarAgendamentoPorId(id));
 
     }
+
+    @DeleteMapping({"/{id}"})
+    public ResponseEntity<Void> cancelarAgendamento(@RequestParam Long id) {
+        agendamentoService.cancelarAgendamento(id);
+        return ResponseEntity.accepted().build();
     
+}
 }

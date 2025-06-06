@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.agendamento.Controllers.DTO.In.AgendamentoRecord;
 import com.agendamento.Controllers.DTO.Out.AgendamentoRecordOut;
 import com.agendamento.Repositories.AgendamentoRepository;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -23,5 +22,12 @@ public class AgendamentoService {
     public AgendamentoRecordOut buscarAgendamentoPorId(Long id) {
         return agendamentoMapper.paraOut(agendamentoRepository.findById(id) 
                 .orElseThrow(() -> new RuntimeException("Não encontrado : " + id)));
+    }
+
+    public void cancelarAgendamento(Long id) {
+        AgendamentoRecord agendamentoRecord = agendamentoMapper.toEntityCancelamento(
+                agendamentoMapper.paraOut(agendamentoRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Não encontrado : " + id))));
+        agendamentoRepository.save(agendamentoRecord);
     }
 }
