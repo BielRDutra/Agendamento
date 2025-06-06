@@ -19,4 +19,9 @@ public class AgendamentoService {
         agendamentoMapper.paraOut(agendamentoMapper.toEntity(agendamentoRecord));
         return agendamentoMapper.toDto(agendamentoRepository.save(agendamentoMapper.toEntity(agendamentoRecord)));
     }
+
+    public AgendamentoRecordOut buscarAgendamentoPorId(Long id) {
+        return agendamentoMapper.paraOut(agendamentoRepository.findById(id) 
+                .orElseThrow(() -> new RuntimeException("Não encontrado : " + id)));
+    }
 }

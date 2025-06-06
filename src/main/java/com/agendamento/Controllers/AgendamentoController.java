@@ -4,13 +4,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.agendamento.Controllers.DTO.In.AgendamentoRecord;
 import com.agendamento.Controllers.DTO.Out.AgendamentoRecordOut;
 import com.agendamento.Services.AgendamentoService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -24,4 +25,11 @@ public class AgendamentoController {
     public ResponseEntity<AgendamentoRecordOut> gravarAgendamento(@RequestBody AgendamentoRecord agendamento) {     
         return ResponseEntity.ok(agendamentoService.gravarAgendamento(agendamento));
     }
+
+    @GetMapping({"/{id}"})
+    public ResponseEntity<AgendamentoRecordOut> buscarAgendamentoPorId(@RequestParam Long id) {
+        return ResponseEntity.ok(agendamentoService.buscarAgendamentoPorId(id));
+
+    }
+    
 }
